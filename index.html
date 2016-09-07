@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>�ɵ����ֲ�ͼ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>可调节轮播图</title>
 <style>
 *{margin:0;padding:0;}
 li{line-style:none;}
@@ -16,7 +16,7 @@ li{line-style:none;}
 #btn a.active{background:white;}
 #btn a.hover{background:white;}
 
-/*���������*/
+/*浏览器兼容*/
 *html .ie6_out{ margin-left:1000px; zoom:1;}
 *html .ie6_in{ position:relative; float:left; margin-left:-1000px;}
 
@@ -38,12 +38,12 @@ window.onload=function(){
 	oUl.style.width=aImg.length*imgWidth+'px';
 	
 	function toReSize(){
-		 var viewWidth=document.documentElement.clientWidth;                 /*����һ��������*/
+		 var viewWidth=document.documentElement.clientWidth;                 /*定义一个可视区*/
 		 
 		 if(viewWidth>1000){
 		 	for(var i=0;i<aImg.length;i++)
 			{
-				aImg[i].style.left=-(imgWidth-viewWidth)/2+'px';            /*ÿ��ͼƬ��leftֵ=ͼƬ�Ŀ�-�����������һ��*/
+				aImg[i].style.left=-(imgWidth-viewWidth)/2+'px';            /*每个图片的left值=图片的宽-可视区宽差的一半*/
 				
 			}
 		 }
@@ -56,15 +56,15 @@ window.onload=function(){
 		toReSize();
 	};
 	
-	for(var i=0;i<aA.length;i++){                                          /*����������ť���ӵ���¼�*/
+	for(var i=0;i<aA.length;i++){                                          /*给这三个按钮添加点击事件*/
 		
-		aA[i].index=i;                                                       /*����*/
+		aA[i].index=i;                                                       /*索引*/
 		aA[i].onclick=function(){
 			for(var i=0;i<aA.length;i++){
-				aA[i].className='';                                          /*�����е�ClassNAme��ԭ����ɿ�*/
+				aA[i].className='';                                          /*把所有的ClassNAme还原，变成空*/
 			}
-			this.className='active';                                         /*�ѵ�ǰ�����ĸĳ�active*/
-			startMove(oUl,{left:-this.index*imgWidth});                      /*ͼƬleftֵ��������*ͼƬ�Ŀ���*/	
+			this.className='active';                                         /*把当前操作的改成active*/
+			startMove(oUl,{left:-this.index*imgWidth});                      /*图片left值等于索引*图片的宽度*/	
 		};
 	}
 	
@@ -81,10 +81,10 @@ window.onload=function(){
 		}
 		iNow2++;
 		for(var i=0;i<aA.length;i++){
-			aA[i].className='';                                          /*�����е�ClassNAme��ԭ����ɿ�*/
+			aA[i].className='';                                          /*把所有的ClassNAme还原，变成空*/
 		}
-		aA[iNow].className='active';                                          /*Ȼ���õ�ǰ�ı��ѡ��*/
-		startMove(oUl,{left:-iNow2*imgWidth},function(){                  /*ͼƬleftֵ��������*ͼƬ�Ŀ���*/
+		aA[iNow].className='active';                                          /*然后让当前的变成选中*/
+		startMove(oUl,{left:-iNow2*imgWidth},function(){                  /*图片left值等于索引*图片的宽度*/
 			if(iNow==0){
 				aLi[0].style.position = 'static';
 				oUl.style.left = 0;
